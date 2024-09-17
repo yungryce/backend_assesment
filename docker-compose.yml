@@ -5,7 +5,8 @@ services:
       dockerfile: backend/Dockerfile
     ports:
       - "5000:5000"
-
+    networks:
+      - app-network
 
   frontend:
     build:
@@ -13,4 +14,9 @@ services:
       dockerfile: frontend/Dockerfile
     ports:
       - "5001:5001"
+    networks:
+      - app-network
 
+networks:
+  app-network:
+    driver: bridge

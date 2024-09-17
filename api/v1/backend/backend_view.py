@@ -42,7 +42,7 @@ def add_book():
         book.save()
 
         # Notify the frontend service using a webhook (localhost)
-        frontend_update_url = 'http://localhost:5001/api/v1/frontend/webhooks/add-book'  # Change to your actual frontend port
+        frontend_update_url = 'http://frontend:5001/api/v1/frontend/webhooks/add-book'  # Change to your actual frontend port
         payload = {'book_id': book.id, 'book_data': book.to_dict()}
         
         # Send book data as payload
@@ -75,7 +75,7 @@ def remove_book(book_id):
         book.delete()
 
         # Notify the frontend service using a webhook
-        frontend_update_url = 'http://localhost:5001/api/v1/frontend/webhooks/remove-book'
+        frontend_update_url = 'http://frontend:5001/api/v1/frontend/webhooks/remove-book'
         payload = {'book_id': book_id}
 
         response = requests.post(frontend_update_url, json=payload)

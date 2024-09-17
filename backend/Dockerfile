@@ -23,10 +23,11 @@ ENV APP_ROLE=backend
 COPY . /api-flask-backend/
 
 # Install dependencies
-RUN pip3 install --upgrade pip && pip install --no-cache-dir -r backend/requirements.txt
+RUN pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Expose the port that Flask will run on
 EXPOSE 5000
 
 # Command to run the application
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+# CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "backend.app:app"]

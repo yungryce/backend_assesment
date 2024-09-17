@@ -23,10 +23,12 @@ ENV APP_ROLE=frontend
 COPY . /api-flask-frontend/
 
 # Install dependencies
-RUN pip3 install --upgrade pip && pip install --no-cache-dir -r frontend/requirements.txt
+RUN pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Expose port 5001 for frontend
 EXPOSE 5001
 
 # Command to run the application
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5001"]
+# CMD ["flask", "run", "--host=0.0.0.0", "--port=5001"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "frontend.app:app"]
+

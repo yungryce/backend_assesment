@@ -6,3 +6,4 @@ SQLAlchemy
 python-dotenv
 requests
 python-json-logger
+gunicorn
