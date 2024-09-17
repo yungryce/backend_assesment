@@ -1,0 +1,45 @@
+Python Environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+Virtual Environment
+.env
+venv/
+env/
+ENV/
+Development Tools
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+.DS_Store (for macOS users)
+Thumbs.db (for Windows users)
+Flask Application Specific
+instance/
+.flaskenv
+.env (Never track your environment variables or secret keys in the repository)
+Database
+Depending on the database you're using, you might want to exclude:
+*.db
+*.sqlite
+migrations/versions/ (optional, some prefer to keep migration scripts in version control)
+Logs
+logs/
+*.log
+Distribution / Packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+Testing
+.pytest_cache/
+.coverage
+coverage.*
+nosetests.xml
+test.db
+*.cover
+Documentation
+docs/_build/
