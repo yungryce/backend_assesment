@@ -132,8 +132,8 @@ def filter_books():
         # Execute the query and fetch the results
         books = query.all()
 
-        # Return a list of book titles
-        return jsonify([book.title for book in books]), 200
+        # Return a list of books with the required fields (id, title, publisher, category)
+        return jsonify([book.to_dict(fields=['id', 'title', 'publisher', 'category']) for book in books]), 200
 
     except Exception as e:
         # Handle unexpected errors during retrieval

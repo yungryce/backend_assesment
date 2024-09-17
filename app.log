@@ -1,0 +1,157 @@
+2024-09-17 07:06:36,293 - INFO - Request: POST http://localhost:5000/api/v1/backend/admin/books/add b''
+2024-09-17 07:06:36,297 - INFO - Response: 415 UNSUPPORTED MEDIA TYPE <!doctype html>
+<html lang=en>
+<title>415 Unsupported Media Type</title>
+<h1>Unsupported Media Type</h1>
+<p>Did not attempt to load JSON data because the request Content-Type was not &#39;application/json&#39;.</p>
+
+2024-09-17 07:12:58,579 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books b''
+2024-09-17 07:12:58,581 - ERROR - Resource not found: http://localhost:5000/api/v1/backend/admin/books
+2024-09-17 07:12:58,584 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:14:49,077 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:14:49,132 - INFO - Response: 500 INTERNAL SERVER ERROR {"message":"Error retrieving users: Object of type generator is not JSON serializable"}
+
+2024-09-17 07:16:08,854 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:16:08,870 - ERROR - Exception on /api/v1/backend/admin/users [GET]
+Traceback (most recent call last):
+  File "/home/juk/cowrywise_api/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/juk/cowrywise_api/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/juk/cowrywise_api/venv/lib/python3.10/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/home/juk/cowrywise_api/venv/lib/python3.10/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'backend_views.list_users' did not return a valid response. The function either returned None or ended without a return statement.
+2024-09-17 07:16:08,873 - INFO - Response: 500 INTERNAL SERVER ERROR <!doctype html>
+<html lang=en>
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+
+2024-09-17 07:24:56,540 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books b''
+2024-09-17 07:24:56,542 - ERROR - Resource not found: http://localhost:5000/api/v1/backend/admin/books
+2024-09-17 07:24:56,544 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:25:22,302 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:25:22,371 - INFO - Response: 500 INTERNAL SERVER ERROR {"message":"Error retrieving users: Object of type generator is not JSON serializable"}
+
+2024-09-17 07:29:27,062 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:29:27,078 - DEBUG - 0 users found.
+2024-09-17 07:29:27,079 - INFO - 0 users found.
+2024-09-17 07:29:27,080 - INFO - Response: 500 INTERNAL SERVER ERROR {"message":"Error retrieving users: Object of type generator is not JSON serializable"}
+
+2024-09-17 07:30:15,467 - INFO - Request: POST http://localhost:5001/api/v1/frontend/enroll b'{\n    "email": "john.doe@example.com",\n    "firstname": "John",\n    "lastname": "Doe"\n}\n'
+2024-09-17 07:30:15,652 - INFO - Request: POST http://localhost:5000/api/v1/backend/admin/webhooks/add-user b'{"user_id": "c6a53439-cb54-47d3-9536-6ece8b88ac52", "user_data": {"email": "john.doe@example.com", "firstname": "John", "lastname": "Doe", "id": "c6a53439-cb54-47d3-9536-6ece8b88ac52", "created_at": "2024-09-17T07:30:15.587545", "updated_at": "2024-09-17T07:30:15.587562"}}'
+2024-09-17 07:30:15,715 - INFO - Response: 200 OK {"message":"User added successfully"}
+
+2024-09-17 07:30:15,721 - INFO - Response: 201 CREATED {"message":"User enrolled successfully and backend notified"}
+
+2024-09-17 07:30:21,049 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:30:21,052 - DEBUG - 1 users found.
+2024-09-17 07:30:21,052 - INFO - 1 users found.
+2024-09-17 07:30:21,053 - INFO - Response: 500 INTERNAL SERVER ERROR {"message":"Error retrieving users: Object of type generator is not JSON serializable"}
+
+2024-09-17 07:32:50,961 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:32:50,983 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:33:19,820 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:33:19,848 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_avaialable":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:40:14,210 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:40:14,228 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_avaalable":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:40:17,575 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:40:17,579 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_avaalable":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:40:48,071 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:40:48,092 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:40:52,195 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:40:52,210 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:42:00,287 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:42:00,308 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:42:01,668 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:42:01,671 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:42:03,150 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:42:03,153 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:42:04,456 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:42:04,461 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:42:48,263 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books b''
+2024-09-17 07:42:48,304 - INFO - Response: 200 OK []
+
+2024-09-17 07:42:55,013 - INFO - Request: POST http://localhost:5000/api/v1/backend/admin/books/add b'{\n    "title": "The Pragmatic Programmer",\n    "publisher": "Addison-Wesley",\n    "category": "Programming",\n    "is_available": true,\n    "borrowed_at": null,\n    "return_by": null,\n    "borrowed_by_id": null\n}\n'
+2024-09-17 07:42:55,107 - INFO - Request: POST http://localhost:5001/api/v1/frontend/webhooks/add-book b'{"book_id": "cc5887ee-fb28-4008-b952-e4ff97aaccfd", "book_data": {"title": "The Pragmatic Programmer", "publisher": "Addison-Wesley", "category": "Programming", "is_available": true, "borrowed_at": null, "return_by": null, "borrowed_by_id": null, "id": "cc5887ee-fb28-4008-b952-e4ff97aaccfd", "created_at": "2024-09-17T07:42:55.039470", "updated_at": "2024-09-17T07:42:55.039474"}}'
+2024-09-17 07:42:55,186 - INFO - Response: 200 OK {"message":"Book added successfully to frontend"}
+
+2024-09-17 07:42:55,190 - INFO - Response: 201 CREATED {"message":"Book added successfully and frontend updated"}
+
+2024-09-17 07:43:00,733 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:43:00,740 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:43:02,753 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:43:02,758 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:43:08,005 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books b''
+2024-09-17 07:43:08,008 - INFO - Response: 200 OK [{"id":"cc5887ee-fb28-4008-b952-e4ff97aaccfd","title":"The Pragmatic Programmer"}]
+
+2024-09-17 07:43:19,853 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users/books b''
+2024-09-17 07:43:19,861 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","is_available":[],"lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:43:56,181 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/users b''
+2024-09-17 07:43:56,189 - INFO - Response: 200 OK [{"created_at":"2024-09-17T07:30:15.587545","email":"john.doe@example.com","firstname":"John","id":"c6a53439-cb54-47d3-9536-6ece8b88ac52","lastname":"Doe","updated_at":"2024-09-17T07:30:15.587562"}]
+
+2024-09-17 07:45:12,939 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books/unavailable b''
+2024-09-17 07:45:12,957 - INFO - Response: 200 OK []
+
+2024-09-17 07:46:37,526 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd b''
+2024-09-17 07:46:37,529 - ERROR - Resource not found: http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd
+2024-09-17 07:46:37,532 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:46:41,192 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd b''
+2024-09-17 07:46:41,193 - ERROR - Resource not found: http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd
+2024-09-17 07:46:41,194 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:46:47,284 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd b''
+2024-09-17 07:46:47,285 - ERROR - Resource not found: http://localhost:5001/api/v1/frontend/books/cc5887ee-fb28-4008-b952-e4ff97aaccfd
+2024-09-17 07:46:47,286 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:46:57,972 - INFO - Request: GET http://localhost:5001/api/v1/frontend/book/cc5887ee-fb28-4008-b952-e4ff97aaccfd b''
+2024-09-17 07:46:57,988 - INFO - Response: 200 OK {"borrowed_at":null,"category":"Programming","is_available":true,"publisher":"Addison-Wesley","return_by":null,"title":"The Pragmatic Programmer"}
+
+2024-09-17 07:47:22,855 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/filter b''
+2024-09-17 07:47:22,873 - INFO - Response: 200 OK ["The Pragmatic Programmer"]
+
+2024-09-17 07:52:13,076 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/filter b''
+2024-09-17 07:52:13,098 - INFO - Response: 200 OK [{"category":"Programming","id":"cc5887ee-fb28-4008-b952-e4ff97aaccfd","publisher":"Addison-Wesley","title":"The Pragmatic Programmer"}]
+
+2024-09-17 07:53:06,481 - INFO - Request: POST http://localhost:5001/api/v1/frontend/borrow/cc5887ee-fb28-4008-b952-e4ff97aaccfd b'{\n  "days": 9\n}'
+2024-09-17 07:53:06,581 - INFO - Request: POST http://localhost:5000/api/v1/backend/admin/webhooks/update-book b'{"book_id": "cc5887ee-fb28-4008-b952-e4ff97aaccfd", "is_available": false}'
+2024-09-17 07:53:06,646 - INFO - Response: 200 OK {"message":"Book status updated successfully"}
+
+2024-09-17 07:53:06,650 - INFO - Response: 200 OK {"message":"Book borrowed successfully and backend updated"}
+
+2024-09-17 07:53:16,566 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books b''
+2024-09-17 07:53:16,567 - ERROR - Resource not found: http://localhost:5000/api/v1/backend/admin/books
+2024-09-17 07:53:16,569 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:53:20,639 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books b''
+2024-09-17 07:53:20,640 - ERROR - Resource not found: http://localhost:5000/api/v1/backend/admin/books
+2024-09-17 07:53:20,640 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:53:22,302 - INFO - Request: GET http://localhost:5000/api/v1/backend/admin/books b''
+2024-09-17 07:53:22,303 - ERROR - Resource not found: http://localhost:5000/api/v1/backend/admin/books
+2024-09-17 07:53:22,304 - INFO - Response: 404 NOT FOUND {"error":"Resource not found"}
+
+2024-09-17 07:54:57,409 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books b''
+2024-09-17 07:54:57,437 - INFO - Response: 200 OK []
+
+2024-09-17 07:55:09,089 - INFO - Request: GET http://localhost:5001/api/v1/frontend/books/filter b''
+2024-09-17 07:55:09,094 - INFO - Response: 200 OK [{"available_on":"2024-09-26T07:53:06.507612","category":"Programming","id":"cc5887ee-fb28-4008-b952-e4ff97aaccfd","publisher":"Addison-Wesley","title":"The Pragmatic Programmer"}]
+

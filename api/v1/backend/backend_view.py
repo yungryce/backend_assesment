@@ -4,6 +4,7 @@ from datetime import datetime
 from models.book import Book
 from models.user import User
 from models.base_model import db
+from flask import current_app as app
 
 
 backend_bp = Blueprint("backend_views", __name__, url_prefix="/api/v1/backend/admin")
@@ -100,7 +101,7 @@ def list_users():
         users = User.get_all()
         
         # Return all users without including borrowed books
-        return jsonify([user.to_dict()] for user in users), 200
+        return jsonify([user.to_dict() for user in users]), 200
     
     except Exception as e:
         # Handle unexpected errors during retrieval
