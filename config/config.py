@@ -5,7 +5,6 @@ from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 from pythonjsonlogger import jsonlogger
 
 class BaseConfig:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'mysecretkey')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'DEBUG')
 
@@ -29,12 +28,18 @@ class BackendProductionConfig(BackendConfig):
     DEBUG = False
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
+class TestConfig(BaseConfig):
+    """Configuration for testing."""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+
 # Centralized mapping of configs
 Config = {
     'frontend_development': FrontendDevelopmentConfig,
     'frontend_production': FrontendProductionConfig,
     'backend_development': BackendDevelopmentConfig,
-    'backend_production': BackendProductionConfig
+    'backend_production': BackendProductionConfig,
+    'test': TestConfig  # Added test configuration
 }
 
 def get_config():

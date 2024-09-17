@@ -7,3 +7,6 @@ python-dotenv
 requests
 python-json-logger
 gunicorn
+pytest
+Flask-Testing
+requests-mock
