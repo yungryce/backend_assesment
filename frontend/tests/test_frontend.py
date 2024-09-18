@@ -1,7 +1,6 @@
 import pytest
 import uuid
 import requests_mock
-from unittest.mock import patch
 from flask_testing import TestCase
 from app import create_app
 from config.base_database import db, init_db
@@ -33,7 +32,7 @@ class TestBackendViews(TestCase):
     def test_enroll_user(self):
         # Perform the test
         with requests_mock.Mocker() as m:
-            m.post('http://localhost:3000/api/v1/backend/admin/webhooks/add-user', json={}, status_code=200)
+            m.post('http://backend:5000/api/v1/backend/admin/webhooks/add-user', json={}, status_code=200)
             
             response = self.client.post('/api/v1/frontend/enroll', json={
                 'email': 'test@example.com',
@@ -76,7 +75,7 @@ class TestBackendViews(TestCase):
     def test_borrow_book(self):
         with requests_mock.Mocker() as m:
             # Mock the backend service response
-            m.post('http://localhost:3000/api/v1/backend/admin/webhooks/update-book', json={}, status_code=200)
+            m.post('http://backend:5000/api/v1/backend/admin/webhooks/update-book', json={}, status_code=200)
         
             book = Book(title='Borrowable Book', publisher='Wiley', category='Drama', is_available=True)
             book.save()

@@ -17,6 +17,28 @@ services:
     networks:
       - app-network
 
+  backend_tests:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["pytest", "backend/tests/test_backend.py"]
+    environment:
+      - FLASK_ENV=test
+      - APP_ROLE=backend
+    networks:
+      - app-network
+
+  frontend_tests:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    command: ["pytest", "frontend/tests/test_frontend.py"]
+    environment:
+      - FLASK_ENV=test
+      - APP_ROLE=frontend
+    networks:
+      - app-network
+      
 networks:
   app-network:
     driver: bridge

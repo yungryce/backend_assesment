@@ -27,7 +27,7 @@ class TestBackendViews(TestCase):
 
     def test_add_book(self):
         with requests_mock.Mocker() as m:
-            m.post('http://localhost:3001/api/v1/frontend/webhooks/add-book', json={}, status_code=200)
+            m.post('http://frontend:5001/api/v1/frontend/webhooks/add-book', json={}, status_code=200)
 
             response = self.client.post('/api/v1/backend/admin/books/add', json={
                 'title': 'Test Book',
@@ -48,7 +48,7 @@ class TestBackendViews(TestCase):
         book.save()
         
         with requests_mock.Mocker() as m:
-            m.post('http://localhost:3001/api/v1/frontend/webhooks/remove-book', json={}, status_code=200)
+            m.post('http://frontend:5001/api/v1/frontend/webhooks/remove-book', json={}, status_code=200)
 
             response = self.client.delete(f'/api/v1/backend/admin/books/remove/{book.id}')
             

@@ -49,13 +49,14 @@ def create_app():
     def log_response_info(response):
         app.logger.info('Response: %s %s', response.status, response.get_data(as_text=True))
         return response
-
+    
     return app
+
+app = create_app()
 
 
 if __name__ == '__main__':
-    app = create_app()
     host = os.getenv('HOST', '0.0.0.0')
-    port = os.getenv('PORT', '5001')
+    port = os.getenv('PORT', '5000')
     env = os.getenv('FLASK_ENV', 'production')
     app.run(host=host, port=port, debug=(env == 'development'))
