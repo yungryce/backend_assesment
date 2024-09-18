@@ -4,6 +4,7 @@ import sys
 from dotenv import load_dotenv
 from flask import Flask, request
 from flask_migrate import Migrate
+from flasgger import Swagger
 
 # Add the project root directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -25,6 +26,9 @@ def create_app():
 
     # Load the appropriate configuration
     app.config.from_object(get_config())
+
+    # Initialize Swagger
+    swagger = Swagger(app, template_file='../api/v1/frontend/swagger.yml')
 
     # Set up logging
     setup_logging(app)

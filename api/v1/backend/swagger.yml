@@ -1,0 +1,154 @@
+info:
+  title: Backend API Documentation
+  description: API documentation for backend service.
+  version: "1.0.0"
+
+servers:
+  - url: http://frontend:5000/api/v1/backend/admin
+
+paths:
+  /books/add:
+    post:
+      summary: Add a new book to the library
+      tags:
+        - Books
+      parameters:
+        - name: body
+          in: body
+          description: Data needed to add a new book
+          schema:
+            type: object
+            required:
+              - title
+              - publisher
+              - category
+            properties:
+              title:
+                type: string
+              publisher:
+                type: string
+              category:
+                type: string
+      responses:
+        201:
+          description: Book added successfully
+        400:
+          description: Invalid input or missing fields
+        409:
+          description: Book already exists
+        500:
+          description: Server error
+
+  /books/remove/{book_id}:
+    delete:
+      summary: Remove a book from the backend
+      tags:
+        - Books
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: string
+          description: ID of the book to remove
+      responses:
+        200:
+          description: Book removed successfully
+        404:
+          description: Book not found
+        500:
+          description: Server error
+
+  /users:
+    get:
+      summary: List all users
+      tags:
+        - Users
+      responses:
+        200:
+          description: Successful retrieval of users
+        500:
+          description: Server error
+
+  /users/books:
+    get:
+      summary: List all users with borrowed books
+      tags:
+        - Users
+      responses:
+        200:
+          description: Successful retrieval of users with borrowed books
+        500:
+          description: Server error
+
+  /books/unavailable:
+    get:
+      summary: List all unavailable books
+      tags:
+        - Books
+      responses:
+        200:
+          description: Successful retrieval of unavailable books
+        500:
+          description: Server error
+
+  /webhooks/add-user:
+    post:
+      summary: Add a new user via webhook
+      tags:
+        - Webhooks
+      parameters:
+        - name: body
+          in: body
+          description: Data needed to add a new user
+          schema:
+            type: object
+            required:
+              - user_data
+            properties:
+              user_data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+      responses:
+        200:
+          description: User added successfully
+        400:
+          description: Missing user data or user already exists
+        500:
+          description: Server error
+
+  /webhooks/update-book:
+    post:
+      summary: Update a book's availability via webhook
+      tags:
+        - Webhooks
+      parameters:
+        - name: body
+          in: body
+          description: Data needed to update a book
+          schema:
+            type: object
+            required:
+              - book_id
+              - is_available
+            properties:
+              book_id:
+                type: string
+              is_available:
+                type: boolean
+      responses:
+        200:
+          description: Book status updated successfully
+        400:
+          description: Missing book ID or availability status
+        404:
+          description: Book not found
+        500:
+          description: Server error

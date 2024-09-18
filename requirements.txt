@@ -10,3 +10,4 @@ gunicorn
 pytest
 Flask-Testing
 requests-mock
+flasgger

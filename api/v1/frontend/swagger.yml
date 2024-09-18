@@ -1,0 +1,233 @@
+info:
+  title: Frontend API Documentation
+  description: API documentation for frontend service.
+  version: "1.0.0"
+
+servers:
+  - url: http://frontend:5001/api/v1/frontend
+
+paths:
+  /enroll:
+    post:
+      summary: Enroll a new user and notify the backend service
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - firstname
+                - lastname
+              properties:
+                email:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+      responses:
+        201:
+          description: User enrolled successfully and backend notified
+        400:
+          description: Invalid input or missing fields
+        409:
+          description: User already enrolled
+        500:
+          description: Server error
+
+  /books:
+    get:
+      summary: Retrieve a list of available books
+      tags:
+        - Books
+      responses:
+        200:
+          description: List of available books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+        500:
+          description: Server error
+
+  /book/{book_id}:
+    get:
+      summary: Retrieve details of a specific book by ID
+      tags:
+        - Books
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Book details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  publisher:
+                    type: string
+                  category:
+                    type: string
+                  is_available:
+                    type: boolean
+                  borrowed_at:
+                    type: string
+                    format: date-time
+                  return_by:
+                    type: string
+                    format: date-time
+        404:
+          description: Book not found
+        500:
+          description: Server error
+
+  /books/filter:
+    get:
+      summary: Filter and retrieve books based on publisher and/or category
+      tags:
+        - Books
+      parameters:
+        - name: publisher
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: List of books matching the filter criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    publisher:
+                      type: string
+                    category:
+                      type: string
+        500:
+          description: Server error
+
+  /borrow/{book_id}:
+    post:
+      summary: Borrow a book and notify the backend service
+      tags:
+        - Books
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - days
+              properties:
+                days:
+                  type: integer
+                  format: int32
+      responses:
+        200:
+          description: Book borrowed successfully and backend updated
+        400:
+          description: Invalid book status or borrow duration
+        500:
+          description: Server error
+
+  /webhooks/add-book:
+    post:
+      summary: Webhook for receiving new book notifications from backend
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - book_data
+              properties:
+                book_data:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    publisher:
+                      type: string
+                    category:
+                      type: string
+                    is_available:
+                      type: boolean
+                    borrowed_at:
+                      type: string
+                      format: date-time
+                    return_by:
+                      type: string
+                      format: date-time
+      responses:
+        200:
+          description: Book added successfully to frontend
+        400:
+          description: Missing book data
+        500:
+          description: Server error
+
+  /webhooks/remove-book:
+    post:
+      summary: Webhook to handle book removal notifications from backend
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - book_id
+              properties:
+                book_id:
+                  type: string
+      responses:
+        200:
+          description: Book removed successfully
+        400:
+          description: Missing book ID
+        404:
+          description: Book not found in frontend database
+        500:
+          description: Server error
