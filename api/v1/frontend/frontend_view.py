@@ -169,7 +169,7 @@ def borrow_book(book_id):
         book.save()
 
         # Notify the backend service using a webhook
-        backend_update_url = 'http://backend:5000//api/v1/backend/admin/webhooks/update-book'
+        backend_update_url = 'http://backend:5000/api/v1/backend/admin/webhooks/update-book'
         payload = {'book_id': book_id, 'is_available': book.is_available}
 
         response = requests.post(backend_update_url, json=payload)

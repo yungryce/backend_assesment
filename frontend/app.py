@@ -57,6 +57,6 @@ app = create_app()
 
 if __name__ == '__main__':
     host = os.getenv('HOST', '0.0.0.0')
-    port = os.getenv('PORT', '5000')
+    port = os.getenv('PORT', '5001')
     env = os.getenv('FLASK_ENV', 'production')
     app.run(host=host, port=port, debug=(env == 'development'))
