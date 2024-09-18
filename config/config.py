@@ -5,7 +5,6 @@ from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 from pythonjsonlogger import jsonlogger
 
 class BaseConfig:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'mysecretkey')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'DEBUG')
 
