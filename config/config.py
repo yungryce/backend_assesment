@@ -29,12 +29,18 @@ class BackendProductionConfig(BackendConfig):
     DEBUG = False
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
+class TestConfig(BaseConfig):
+    """Configuration for testing."""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+
 # Centralized mapping of configs
 Config = {
     'frontend_development': FrontendDevelopmentConfig,
     'frontend_production': FrontendProductionConfig,
     'backend_development': BackendDevelopmentConfig,
-    'backend_production': BackendProductionConfig
+    'backend_production': BackendProductionConfig,
+    'test': TestConfig
 }
 
 def get_config():
