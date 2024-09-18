@@ -26,8 +26,16 @@ def add_book():
     publisher = data.get('publisher')
     category = data.get('category')
 
-    if not title or not publisher or not category:
-        return jsonify({"message": "Missing required fields: title, publisher, or category"}), 400
+    missing_fields = []
+    if not title:
+        missing_fields.append('title')
+    if not publisher:
+        missing_fields.append('publisher')
+    if not category:
+        missing_fields.append('category')
+
+    if missing_fields:
+        return jsonify({"message": f"Missing required fields: {', '.join(missing_fields)}"}), 400
     
     # Check if the book with the same title already exists
     existing_book = Book.query.filter_by(title=title).first()

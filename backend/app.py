@@ -17,37 +17,43 @@ from api.v1.backend.backend_view import backend_bp
 # Load environment variables from .env file
 load_dotenv()
 
-# Start the Flask app
-app = Flask(__name__)
+def create_app():
+    """
+    Start the Flask app
+    """
+    app = Flask(__name__)
 
-# Load the appropriate configuration
-app.config.from_object(get_config())
+    # Load the appropriate configuration
+    app.config.from_object(get_config())
 
-# Set up logging
-setup_logging(app)
+    # Set up logging
+    setup_logging(app)
 
-# Register error handlers
-register_error_handlers(app)
+    # Register error handlers
+    register_error_handlers(app)
 
-# Initialize SQLAlchemy with the Flask app
-init_db(app)
-Migrate(app, db)
+    # Initialize SQLAlchemy with the Flask app
+    init_db(app)
+    Migrate(app, db)
 
-# Register the Blueprint with the Flask application
-app.register_blueprint(backend_bp)
+    # Register the Blueprint with the Flask application
+    app.register_blueprint(backend_bp)
 
-# Log request information before each request
-@app.before_request
-def log_request_info():
-    app.logger.info('Request: %s %s %s', request.method, request.url, request.data)
+    # Log request information before each request
+    @app.before_request
+    def log_request_info():
+        app.logger.info('Request: %s %s %s', request.method, request.url, request.data)
 
-# Log response information after each request
-@app.after_request
-def log_response_info(response):
-    app.logger.info('Response: %s %s', response.status, response.get_data(as_text=True))
-    return response
+    # Log response information after each request
+    @app.after_request
+    def log_response_info(response):
+        app.logger.info('Response: %s %s', response.status, response.get_data(as_text=True))
+        return response
+    
+    return app
 
 if __name__ == '__main__':
+    app = create_app()
     host = os.getenv('HOST', '0.0.0.0')
     port = os.getenv('PORT', '5000')
     env = os.getenv('FLASK_ENV', 'production')
