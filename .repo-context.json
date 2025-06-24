@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "project_identity": {
+    "name": "backend_assessment",
+    "type": "assessment",
+    "scope": "fullstack",
+    "is_independent": true,
+    "version": "1.0.0",
+    "description": "Comprehensive microservices-based library management system developed for Cowrywise's backend engineering technical interview. Demonstrates advanced Flask architecture, inter-service communication, database design, containerization, and enterprise-grade development practices.",
+    "curriculum_stage": "advanced"
+  },
+  "tech_stack": {
+    "primary": [
+      "Python 3.8+",
+      "Flask 2.0+",
+      "SQLAlchemy",
+      "Docker"
+    ],
+    "secondary": [
+      "Flask-Migrate",
+      "Flask-SQLAlchemy",
+      "Docker Compose",
+      "Flasgger/Swagger",
+      "Gunicorn"
+    ],
+    "key_libraries": [
+      "Flask",
+      "Flask-Migrate",
+      "Flask-SQLAlchemy",
+      "mysqlclient",
+      "SQLAlchemy",
+      "python-dotenv",
+      "requests",
+      "python-json-logger",
+      "gunicorn",
+      "pytest",
+      "Flask-Testing",
+      "requests-mock",
+      "flasgger"
+    ],
+    "development_tools": [
+      "Docker",
+      "Docker Compose",
+      "pytest",
+      "Flask-Testing",
+      "Swagger/OpenAPI"
+    ],
+    "testing_frameworks": [
+      "pytest",
+      "Flask-Testing",
+      "requests-mock",
+      "unittest"
+    ]
+  },
+  "skill_manifest": {
+    "technical": [
+      "Microservices Architecture Design",
+      "RESTful API Development",
+      "Flask Framework Mastery",
+      "SQLAlchemy ORM Implementation",
+      "Database Migration Management",
+      "Docker Containerization",
+      "Inter-Service Communication",
+      "Webhook Implementation",
+      "API Documentation with Swagger",
+      "Environment Configuration Management",
+      "Structured Logging Implementation",
+      "Comprehensive Testing Strategy",
+      "Error Handling and Validation",
+      "Blueprint-based Modular Architecture"
+    ],
+    "domain": [
+      "Library Management Systems",
+      "Service-Oriented Architecture",
+      "Database Design and Modeling",
+      "API Design Patterns",
+      "Microservices Communication Patterns",
+      "DevOps and Containerization",
+      "System Integration",
+      "Production-Ready Application Development"
+    ],
+    "professional": [
+      "Technical Interview Preparation",
+      "System Architecture Documentation",
+      "Code Organization and Structure",
+      "Best Practices Implementation",
+      "Problem-Solving and Design Thinking",
+      "Technical Communication",
+      "Project Planning and Execution",
+      "Quality Assurance and Testing"
+    ],
+    "competency_level": "advanced"
+  },
+  "components": {
+    "backend_service": {
+      "type": "service",
+      "path": "backend/",
+      "description": "Administrative microservice for library management operations including book inventory and user management",
+      "dependencies": ["models", "config", "api.v1.backend"],
+      "interfaces": [
+        "/api/v1/backend/admin/books/add",
+        "/api/v1/backend/admin/books",
+        "/api/v1/backend/admin/users",
+        "/api/v1/backend/admin/webhooks/add-user"
+      ]
+    },
+    "frontend_service": {
+      "type": "service",
+      "path": "frontend/",
+      "description": "User-facing microservice for enrollment, book browsing, and borrowing operations",
+      "dependencies": ["models", "config", "api.v1.frontend"],
+      "interfaces": [
+        "/api/v1/frontend/enroll",
+        "/api/v1/frontend/books",
+        "/api/v1/frontend/books/borrow",
+        "/api/v1/frontend/books/return",
+        "/api/v1/frontend/users/{id}/books"
+      ]
+    },
+    "data_models": {
+      "type": "module",
+      "path": "models/",
+      "description": "SQLAlchemy ORM models for User and Book entities with relationship mapping",
+      "dependencies": ["config.base_database"],
+      "interfaces": ["User", "Book", "BaseModel"]
+    },
+    "api_layer": {
+      "type": "module",
+      "path": "api/v1/",
+      "description": "Versioned API layer with separate backend and frontend endpoint controllers",
+      "dependencies": ["models", "config"],
+      "interfaces": ["backend_view", "frontend_view"]
+    },
+    "configuration": {
+      "type": "module",
+      "path": "config/",
+      "description": "Environment-based configuration management and error handling",
+      "dependencies": [],
+      "interfaces": ["get_config", "setup_logging", "register_error_handlers"]
+    },
+    "containerization": {
+      "type": "utility",
+      "path": "docker-compose.yml",
+      "description": "Multi-service Docker orchestration with separate containers for services and tests",
+      "dependencies": ["backend/Dockerfile", "frontend/Dockerfile"],
+      "interfaces": ["backend", "frontend", "backend_tests", "frontend_tests"]
+    },
+    "test_suite": {
+      "type": "test",
+      "path": "backend/tests/, frontend/tests/",
+      "description": "Comprehensive test coverage with service-specific unit and integration tests",
+      "dependencies": ["pytest", "Flask-Testing"],
+      "interfaces": ["test_backend.py", "test_frontend.py"]
+    }
+  },
+  "progression": {
+    "stage_1": {
+      "description": "Foundation Setup - Basic Flask application structure and database modeling",
+      "tech_stack": ["Flask", "SQLAlchemy", "Flask-Migrate"],
+      "features": [
+        "Basic Flask application setup",
+        "SQLAlchemy ORM models for User and Book",
+        "Database migration configuration",
+        "Environment-based configuration"
+      ],
+      "skills": [
+        "Flask application structure",
+        "ORM modeling and relationships",
+        "Database migration management",
+        "Configuration management"
+      ]
+    },
+    "stage_2": {
+      "description": "Microservices Architecture - Separation of backend and frontend services",
+      "tech_stack": ["Flask Blueprints", "Service Architecture", "Inter-service Communication"],
+      "features": [
+        "Separate backend and frontend services",
+        "Blueprint-based modular architecture",
+        "RESTful API endpoint design",
+        "Service-specific database instances"
+      ],
+      "skills": [
+        "Microservices design patterns",
+        "API endpoint development",
+        "Service separation and modularity",
+        "RESTful architecture principles"
+      ]
+    },
+    "stage_3": {
+      "description": "Advanced Features - Inter-service communication and API documentation",
+      "tech_stack": ["Webhooks", "Swagger/OpenAPI", "Request Validation"],
+      "features": [
+        "Webhook-based service communication",
+        "Interactive API documentation with Swagger",
+        "Request validation and error handling",
+        "User enrollment and book borrowing workflows"
+      ],
+      "skills": [
+        "Inter-service communication patterns",
+        "API documentation practices",
+        "Input validation and security",
+        "Complex workflow implementation"
+      ]
+    },
+    "stage_4": {
+      "description": "Production Readiness - Containerization, testing, and deployment",
+      "tech_stack": ["Docker", "Docker Compose", "pytest", "Production Configuration"],
+      "features": [
+        "Docker containerization for both services",
+        "Docker Compose orchestration",
+        "Comprehensive test suite with pytest",
+        "Production-ready logging and monitoring"
+      ],
+      "skills": [
+        "Containerization and orchestration",
+        "Testing strategy and implementation",
+        "Production deployment practices",
+        "Monitoring and observability"
+      ]
+    }
+  },
+  "relationships": {
+    "dependencies": [
+      "Flask Framework - Core web framework",
+      "SQLAlchemy - Database ORM and modeling",
+      "Docker - Containerization platform"
+    ],
+    "integrations": [
+      "Webhook Communication - Backend and frontend service integration",
+      "Database Synchronization - Cross-service data consistency",
+      "API Documentation - Swagger/OpenAPI integration"
+    ],
+    "assessment_context": [
+      "Cowrywise Technical Interview - Backend engineering assessment",
+      "Microservices Demonstration - Advanced architecture patterns",
+      "Best Practices Showcase - Industry-standard development practices"
+    ]
+  },
+  "learning_outcomes": {
+    "primary": [
+      "Master microservices architecture design and implementation",
+      "Develop advanced Flask application structure and patterns",
+      "Implement comprehensive database design with ORM relationships",
+      "Create production-ready containerized applications"
+    ],
+    "secondary": [
+      "Advanced testing strategies and implementation",
+      "API documentation and specification practices",
+      "Inter-service communication patterns",
+      "DevOps and deployment automation"
+    ]
+  },
+  "assessment_criteria": {
+    "technical_depth": "advanced",
+    "architecture_complexity": "high",
+    "implementation_quality": "production_ready",
+    "testing_coverage": "comprehensive",
+    "documentation_quality": "professional",
+    "interview_readiness": "excellent"
+  },
+  "complexity_assessment": {
+    "technical_difficulty": "advanced",
+    "scope_breadth": "comprehensive",
+    "integration_complexity": "high",
+    "learning_curve": "steep",
+    "practical_application": "high",
+    "interview_demonstration": "excellent"
+  }
+}
